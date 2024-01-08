@@ -2,6 +2,10 @@
   "name": "deliveroo-clone-reactnative",
   "private": true,
   "version": "1.0.0",
+  "author": {
+    "name": "Daniel Ohinoyi Isah",
+    "email": "bizwithdan@gmail.com"
+  },
   "main": "package.json",
   "license": "UNLICENSED",
   "scripts": {
