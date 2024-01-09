@@ -77,24 +77,25 @@ const HomeScreen = () => {
             </View>
 
             {/**body */}
-            <ScrollView className="bg-gray-100 mb-40" >
+            <ScrollView className="bg-gray-100" >
                 {/** Categories */}
                 <Categories />
 
-                {/** Featured */}
+                <View className="pb-36">
+                    {/** Featured */}
 
-                {featuredCategories?.map(category => (
-                    <FeaturedRow
-                        key={category._id}
-                        id={category._id}
-                        title={category.name}
-                        description={category.short_description}
-                    />
-                ))}
+                    {featuredCategories?.map(category => (
+                        <FeaturedRow
+                            key={category._id}
+                            id={category._id}
+                            title={category.name}
+                            description={category.short_description}
+                        />
+                    ))}
+                </View>
 
 
             </ScrollView>
-            <Text className="text-center p-10">Built by Danzycool</Text>
         </SafeAreaView>
     )
 }
