@@ -4,26 +4,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import { MinusCircleIcon, PlusCircleIcon } from 'react-native-heroicons/solid';
 
 import { urlFor } from '../sanity';
-import { addToBasket, selectBasketItems } from '../features/basketSlice';
+import {
+    addToBasket,
+    removeFromBasket,
+    selectBasketItemsWithId
+} from '../features/basketSlice';
+import formatter from '../features/numberFormatter';
 
 const DishRow = ({ id, name, description, price, image }) => {
-    const formatter = (num) => {
-        return num.toLocaleString('en-US', {
-            style: 'currency',
-            currency: 'GBP',
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-        });
-    }
-
     const [isPressed, setIsPressed] = useState(false);
-    const items = useSelector(selectBasketItems);
-    const dispatch = useDispatch();
 
-    console.log(items)
+    // select specific item from the basket with id
+    const items = useSelector((state) => selectBasketItemsWithId(state, id));
+    const dispatch = useDispatch();
 
     const addItemToBasket = () => {
         dispatch(addToBasket({ id, name, description, price, image }))
+    }
+
+    const removeItemFromBasket = () => {
+        if (!items.length > 0) return;
+
+        dispatch(removeFromBasket({ id }))
     }
 
     return (
@@ -58,8 +60,11 @@ const DishRow = ({ id, name, description, price, image }) => {
             {isPressed &&
                 (<View className="bg-white px-4">
                     <View className="flex-row items-center space-x-2 pb-3">
-                        <TouchableOpacity>
-                            <MinusCircleIcon size={40} color="#00CCBB" />
+                        <TouchableOpacity
+                            disabled={!items.length}
+                            onPress={removeItemFromBasket}
+                        >
+                            <MinusCircleIcon size={40} color={items.length > 0 ? "#00CCBB" : "gray"} />
                         </TouchableOpacity>
 
                         <Text>{items.length}</Text>
