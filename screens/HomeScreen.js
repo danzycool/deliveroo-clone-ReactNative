@@ -42,7 +42,7 @@ const HomeScreen = () => {
 
     return (
         <SafeAreaView>
-            <View className="flex-1 bg-white pt-5">
+            <View className="flex-1 bg-white pt-5 h-full">
 
 
                 {/** Header */}
@@ -80,11 +80,12 @@ const HomeScreen = () => {
                 </View>
 
                 {/**body */}
-                <ScrollView className="bg-gray-100" >
+                <ScrollView className="bg-gray-100">
+
                     {/** Categories */}
                     <Categories />
 
-                    <View className="pb-36">
+                    <View className="pb-5">
                         {/** Featured */}
 
                         {featuredCategories?.map(category => (
@@ -95,6 +96,10 @@ const HomeScreen = () => {
                                 description={category.short_description}
                             />
                         ))}
+                    </View>
+
+                    <View className="w-full bg-[#00CCBB] p-5 mt-2">
+                        <Text className="text-center text-lg font-bold color-white">Built with "❤️" by Danzycool</Text>
                     </View>
 
                 </ScrollView>

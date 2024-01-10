@@ -7,8 +7,8 @@ import { XCircleIcon } from 'react-native-heroicons/solid';
 
 import { selectRestaurant } from '../features/restaurantSlice';
 import { removeFromBasket, selectBasketItems, selectBasketTotal } from '../features/basketSlice';
-import { urlFor } from '../sanity';
 import formatter from '../features/numberFormatter';
+import { urlFor } from '../sanity';
 
 const BasketScreen = () => {
     const navigation = useNavigation();
@@ -109,7 +109,10 @@ const BasketScreen = () => {
                         </Text>
                     </View>
 
-                    <TouchableOpacity className="rounded-lg bg-[#00CCBB] p-4 ">
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('PreparingOrderScreen')}
+                        className="rounded-lg bg-[#00CCBB] p-4"
+                    >
                         <Text className="text-center text-white text-lg font-bold">Place Order</Text>
                     </TouchableOpacity>
                 </View>
